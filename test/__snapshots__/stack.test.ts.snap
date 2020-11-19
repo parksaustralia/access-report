@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+Object {
+  "Parameters": Object {
+    "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0ArtifactHashE8C863F3": Object {
+      "Description": "Artifact hash for asset \\"122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0\\"",
+      "Type": "String",
+    },
+    "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0S3Bucket00F7E006": Object {
+      "Description": "S3 bucket for asset \\"122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0\\"",
+      "Type": "String",
+    },
+    "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0S3VersionKey653D98FF": Object {
+      "Description": "S3 key for asset version \\"122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "Handler886CB40B": Object {
+      "DependsOn": Array [
+        "HandlerServiceRoleDefaultPolicyCBD0CC91",
+        "HandlerServiceRoleFCDC14AE",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0S3Bucket00F7E006",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0S3VersionKey653D98FF",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters122a6d68b456c81b7302a1068e794149a23106d81603aa7c2e72b94225f19fd0S3VersionKey653D98FF",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "SENDGRID_API_KEY": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":secretsmanager:",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ":",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":secret:accessReport/sendgridApiKey:SecretString:::}}",
+                ],
+              ],
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "MemorySize": 3008,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "HandlerServiceRoleFCDC14AE",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 30,
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "HandlerServiceRoleDefaultPolicyCBD0CC91": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "HandlerServiceRoleDefaultPolicyCBD0CC91",
+        "Roles": Array [
+          Object {
+            "Ref": "HandlerServiceRoleFCDC14AE",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "HandlerServiceRoleFCDC14AE": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ScheduleRuleAllowEventRuleMyTestStackScheduleRule3625033547FCA01B": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "Handler886CB40B",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::GetAtt": Array [
+            "ScheduleRuleDA5BD877",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "ScheduleRuleDA5BD877": Object {
+      "Properties": Object {
+        "ScheduleExpression": "cron(30 12 * * ? *)",
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "Handler886CB40B",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+  },
+}
+`;
