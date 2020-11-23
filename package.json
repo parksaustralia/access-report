@@ -18,27 +18,27 @@
     "@aws-cdk/aws-lambda-nodejs": "1.74.0",
     "@aws-cdk/aws-secretsmanager": "1.74.0",
     "@aws-cdk/core": "1.74.0",
-    "@types/he": "^1.1.1",
-    "@types/jest": "^26.0.10",
+    "@types/he": "1.1.1",
+    "@types/jest": "26.0.15",
     "@types/node": "10.17.27",
     "aws-cdk": "1.74.0",
-    "jest": "^26.4.2",
-    "lambda-local": "^1.7.4",
+    "jest": "26.6.1",
+    "lambda-local": "1.7.4",
     "parcel": "2.0.0-beta.1",
-    "prettier": "^2.1.2",
-    "ts-jest": "^26.2.0",
-    "ts-node": "^8.1.0",
-    "typescript": "~3.9.7"
+    "prettier": "2.1.2",
+    "ts-jest": "26.4.2",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.7"
   },
   "dependencies": {
-    "@sendgrid/client": "^7.3.0",
-    "@types/luxon": "^1.25.0",
-    "aws-sdk": "^2.784.0",
-    "axios": "^0.21.0",
-    "handlebars": "^4.7.6",
-    "he": "^1.2.0",
-    "inline-css": "^3.0.0",
-    "luxon": "^1.25.0"
+    "@sendgrid/client": "7.3.0",
+    "@types/luxon": "1.25.0",
+    "aws-sdk": "2.784.0",
+    "axios": "0.21.0",
+    "handlebars": "4.7.6",
+    "he": "1.2.0",
+    "inline-css": "3.0.0",
+    "luxon": "1.25.0"
   },
   "targets": {
     "cdk-lambda": {
