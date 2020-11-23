@@ -27,7 +27,7 @@ export class Stack extends cdk.Stack {
 
     const target = new LambdaFunction(handler);
 
-    // Execute daily at 12 pm Darwin time
+    // Execute daily at 10 am Darwin time
     new Rule(this, "ScheduleRule", {
       schedule: Schedule.cron({ minute: "30", hour: "12" }),
       targets: [target],

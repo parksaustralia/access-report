@@ -125,7 +125,13 @@ export async function handler() {
 
   try {
     const messageId = (singleSendResponse[0].body as singleSendResponseBody).id;
-    const sendAt = DateTime.local().startOf("day").plus({ hours: 3 }).toISO();
+
+    // Schedule to deliver at 10:30 am Darwin time (30 minutes after the script)
+    const sendAt = DateTime.local()
+      .startOf("day")
+      .plus({ hours: 10, minutes: 30 })
+      .toISO();
+
     const response = await scheduleSingleSend(messageId, sendAt);
   } catch (error) {
     console.log("Failed to schedule single send in SendGrid:");

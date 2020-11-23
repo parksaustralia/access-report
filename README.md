@@ -2,11 +2,11 @@
 
 Run daily in AWS Lambda this code generates an email in SendGrid after pulling the current access report data from CloudCannon.
 
-It retrieves the [Handlebars template from Sendgrid](https://mc.sendgrid.com/design-library/your-designs/3aaf2986-a36d-4a7d-883b-28cb497eb56f/preview) and executes a first pass render with [report data](https://parksaustralia.gov.au/kakadu/access/feed.xml).
+It retrieves the [Handlebars template from Sendgrid](https://mc.sendgrid.com/design-library/your-designs/3aaf2986-a36d-4a7d-883b-28cb497eb56f/preview) and executes a first pass render with the [report data](https://parksaustralia.gov.au/kakadu/access/feed.xml).
 
 It posts the rendered HTML back to SendGrid as a [draft email](https://mc.sendgrid.com/single-sends). The [mailing lists](https://mc.sendgrid.com/contacts/lists/fc55886e-c778-41d8-a0d8-83cde65deaa2) and [unsubscribe groups](https://mc.sendgrid.com/unsubscribe-groups/15891/edit/preview/unsubscribe) are set automatically.
 
-The code runs daily at 12:00 pm Darwin time and creates a [scheduled single send in SendGrid](https://mc.sendgrid.com/single-sends) which is scheduled to automatically send at 12:30 pm Darwin time.
+The code runs daily at 10:00 am Darwin time and creates a [scheduled single send in SendGrid](https://mc.sendgrid.com/single-sends) which is scheduled to automatically send at 10:30 am Darwin time.
 
 This project is set up and deployed using [AWS CDK](https://docs.aws.amazon.com/cdk/).
 
